@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  actions: write
 
 jobs:
   build:
@@ -63,16 +64,8 @@ jobs:
 
       - name: Smoke test (SVG -> PNG end-to-end)
         run: |
-          cat > /tmp/eigc-test.svg <<'EOF'
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><rect width="32" height="32" fill="#ff0000"/></svg>
-EOF
-          node -e "
-            const EIGC = require('./index.js');
-            const c = new EIGC();
-            c.svgToRaster({ input: '/tmp/eigc-test.svg', output: '/tmp/eigc-test.png', format: 'png' })
-              .then(r => { console.log('SMOKE_OK', r); process.exit(0); })
-              .catch(e => { console.error('SMOKE_FAIL', e); process.exit(1); });
-          "
+          printf '%s' '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><rect width="32" height="32" fill="#ff0000"/></svg>' > /tmp/eigc-test.svg
+          node -e "const EIGC = require('./index.js'); const c = new EIGC(); c.svgToRaster({ input: '/tmp/eigc-test.svg', output: '/tmp/eigc-test.png', format: 'png' }).then(r => { console.log('SMOKE_OK', r); process.exit(0); }).catch(e => { console.error('SMOKE_FAIL', e); process.exit(1); });"
           file /tmp/eigc-test.png
 
       - uses: actions/upload-artifact@v4
