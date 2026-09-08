@@ -1,0 +1,82 @@
+name: build-native
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Linux is the production target. We install Ubuntu's own OpenJDK 17
+          # (not a downloaded Temurin) so the linker rpath baked into the ELF
+          # points at /usr/lib/jvm/java-17-openjdk-amd64/lib/server — the exact
+          # path prod (Ubuntu 24.04) resolves libjvm.so from.
+          - os: ubuntu-latest
+            jdk: apt-openjdk-17
+          # macOS build for the original darwin-x64 target.
+          - os: macos-13
+            jdk: temurin-17
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install OpenJDK 17 (Ubuntu apt)
+        if: matrix.jdk == 'apt-openjdk-17'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jdk
+          echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64" >> "$GITHUB_ENV"
+
+      - name: Install OpenJDK 17 (Temurin — macOS)
+        if: matrix.jdk == 'temurin-17'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Build native addon
+        run: |
+          echo "JAVA_HOME=${JAVA_HOME:-$JAVA_HOME}"
+          java -version
+          npm install --ignore-scripts
+          npm install -g node-gyp
+          export EIGC_CLASSPATH="$GITHUB_WORKSPACE/lib/*"
+          node-gyp rebuild
+
+      - name: Inspect built binary
+        run: |
+          file build/Release/eigc.node
+          ls -la build/Release/eigc.node
+
+      - name: Smoke test (SVG -> PNG end-to-end)
+        run: |
+          cat > /tmp/eigc-test.svg <<'EOF'
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><rect width="32" height="32" fill="#ff0000"/></svg>
+EOF
+          node -e "
+            const EIGC = require('./index.js');
+            const c = new EIGC();
+            c.svgToRaster({ input: '/tmp/eigc-test.svg', output: '/tmp/eigc-test.png', format: 'png' })
+              .then(r => { console.log('SMOKE_OK', r); process.exit(0); })
+              .catch(e => { console.error('SMOKE_FAIL', e); process.exit(1); });
+          "
+          file /tmp/eigc-test.png
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eigc-${{ matrix.os }}-x64
+          path: build/Release/eigc.node
+          if-no-files-found: error

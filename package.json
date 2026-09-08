@@ -1,0 +1,62 @@
+
+{
+  "name": "eigc",
+  "version": "1.0.0",
+  "description": "Elite India Graphics Converter - A powerful Node.js native add-on for comprehensive image and document conversion",
+  "main": "index.js",
+  "types": "eigc.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "npm install nan node-addon-api",
+    "install": "export EIGC_CLASSPATH=/usr/local/bin/eigc_lib/*:./lib/*:./node_modules/eigc/lib/*:$EIGC_CLASSPATH && node-gyp rebuild",
+    "setup": "export EIGC_CLASSPATH=/usr/local/bin/eigc_lib/*:./lib/*:./node_modules/eigc/lib/*:$EIGC_CLASSPATH && echo $EIGC_CLASSPATH",
+    "build": "npm run setup && node-gyp rebuild",
+    "build:signed": "./build_and_sign.sh",
+    "clean": "node-gyp clean",
+    "rebuild": "npm run clean && npm run build",
+    "rebuild:signed": "npm run clean && npm run build:signed",
+    "start": "export EIGC_CLASSPATH=/usr/local/bin/eigc_lib/*:./lib/*:./node_modules/eigc/lib/*:$EIGC_CLASSPATH && node sample.js"
+  },
+  "keywords": [
+    "eigc",
+    "image-conversion",
+    "graphics-converter",
+    "html-to-image",
+    "svg-converter",
+    "raster-converter",
+    "vector-graphics",
+    "native-addon",
+    "node-gyp",
+    "jni",
+    "java",
+    "chrome-headless",
+    "inkscape",
+    "pdf-converter",
+    "designhill",
+    "elite-india"
+  ],
+  "author": {
+    "name": "Saleem Ahmad",
+    "company": "Elite India",
+    "email": "saleem@eliteindia.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "nan": "^2.22.2",
+    "node-addon-api": "^8.3.1"
+  },
+  "gypfile": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Elidia-Technology/EIGC.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Elidia-Technology/EIGC/issues"
+  },
+  "homepage": "https://github.com/Elidia-Technology/EIGC#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "os": ["linux", "darwin", "win32"],
+  "cpu": ["x64", "arm64"]
+}
