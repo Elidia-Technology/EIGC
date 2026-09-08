@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright (c) 2025-2026 Elite India
+ * Copyright (c) 2025-2026 Elidia Technology Pvt Ltd
  *
  * Author: Saleem Ahmad
  *
@@ -475,4 +475,4 @@ if (cluster.isMaster) {
 
 ---
 
-© 2025-2026 Elite India. All rights reserved.
+© 2025-2026 Elidia Technology Pvt Ltd. All rights reserved.

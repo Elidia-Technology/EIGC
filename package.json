@@ -2,7 +2,7 @@
 {
   "name": "eigc",
   "version": "1.0.0",
-  "description": "Elite India Graphics Converter - A powerful Node.js native add-on for comprehensive image and document conversion",
+  "description": "Elidia Technology Pvt Ltd Graphics Converter - A powerful Node.js native add-on for comprehensive image and document conversion",
   "main": "index.js",
   "types": "eigc.d.ts",
   "scripts": {
@@ -37,7 +37,7 @@
   ],
   "author": {
     "name": "Saleem Ahmad",
-    "company": "Elite India",
+    "company": "Elidia Technology Pvt Ltd",
     "email": "saleem@eliteindia.com"
   },
   "license": "MIT",

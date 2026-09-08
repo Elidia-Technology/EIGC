@@ -97,4 +97,4 @@ All method signatures and functionality remain the same - only naming has change
 
 ---
 
-© 2025-2026 Elite India. All rights reserved.
+© 2025-2026 Elidia Technology Pvt Ltd. All rights reserved.

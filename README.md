@@ -1,10 +1,10 @@
-# EIGC - Elite India Graphics Converter
+# EIGC - Elidia Technology Pvt Ltd Graphics Converter
 
 ![Version](https://img.shields.io/npm/v/eigc)
 ![License](https://img.shields.io/npm/l/eigc)
 ![Node.js](https://img.shields.io/node/v/eigc)
 
-A powerful Node.js native add-on for EIGC (Elite India Graphics Converter) that provides comprehensive image and document conversion capabilities through Java-based processing.
+A powerful Node.js native add-on for EIGC (Elidia Technology Pvt Ltd Graphics Converter) that provides comprehensive image and document conversion capabilities through Java-based processing.
 
 ## 🚀 Features
 
@@ -289,9 +289,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👨‍💻 Author
 
 **Saleem Ahmad**  
-Elite India  
+Elidia Technology Pvt Ltd  
 📧 [Contact](mailto:saleem@eliteindia.com)
 
 ---
 
-© 2025-2026 Elite India. All rights reserved.
+© 2025-2026 Elidia Technology Pvt Ltd. All rights reserved.

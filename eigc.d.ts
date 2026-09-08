@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright (c) 2025-2026 Elite India
+ * Copyright (c) 2025-2026 Elidia Technology Pvt Ltd
  *
  * Author: Saleem Ahmad
  *
@@ -25,7 +25,7 @@
 
 declare module 'eigc' {
     /**
-     * Elite India Graphics Converter - Main class for image and document conversion
+     * Elidia Technology Pvt Ltd Graphics Converter - Main class for image and document conversion
      */
     export class EIGC {
         /** Google Chrome Driver version for HTML to image conversion */

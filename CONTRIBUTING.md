@@ -1,6 +1,6 @@
 # Contributing to EIGC
 
-We welcome contributions to the Elite India Graphics Converter (EIGC) project! This document provides guidelines for contributing to the project.
+We welcome contributions to the Elidia Technology Pvt Ltd Graphics Converter (EIGC) project! This document provides guidelines for contributing to the project.
 
 ## Table of Contents
 
@@ -370,4 +370,4 @@ By contributing to EIGC, you agree that your contributions will be licensed unde
 
 Thank you for your interest in contributing to EIGC! Your contributions help make this project better for everyone.
 
-© 2025-2026 Elite India. All rights reserved.
+© 2025-2026 Elidia Technology Pvt Ltd. All rights reserved.
